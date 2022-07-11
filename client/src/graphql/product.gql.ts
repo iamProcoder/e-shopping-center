@@ -12,3 +12,16 @@ export const GET_PRODUCTS = gql`
         }
     }
 `;
+
+export const GET_PRODUCT = gql`
+    query GetProduct($getProductId: ID!) {
+        getProduct(id: $getProductId) {
+            id
+            title
+            description
+            price
+            photos
+            createdAt
+        }
+    }
+`;

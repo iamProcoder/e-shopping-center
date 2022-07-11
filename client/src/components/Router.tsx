@@ -17,9 +17,8 @@ const Router = () => {
         <Route path="/auth" element={<Auth />} />
         <Route element={<ProtectedRoutes />}>
           <Route element={<Home />}>
-            <Route path="/" element={<Products />}>
-              <Route path="/product-detail/:id" element={<ProductDetail />} />
-            </Route>
+            <Route path="/" element={<Products />} />
+            <Route path="/product-detail/:id" element={<ProductDetail />} />
             <Route path="/order-card" element={<OrderCard />} />
             <Route path="/profile" element={<Profile />} />            
           </Route>
