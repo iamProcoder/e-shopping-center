@@ -1,0 +1,32 @@
+scalar Date
+
+type Product {
+    id: ID!
+    title: String!
+    description: String
+    price: Int!
+    photos: [String!]
+    createdAt: Date
+}
+
+type Query {
+    getProductList: [Product!]!
+    getProduct(id: ID!): Product!
+}
+
+type Mutation {
+    addProduct(data: AddOrUpdateProductInput!): Product
+    updateProduct(data: AddOrUpdateProductInput!, params: UpdateParams!): Product
+    deleteProduct(id: ID!): Product
+}
+
+input AddOrUpdateProductInput {
+    title: String!
+    description: String
+    price: Int!
+    photos: [String!]
+    createdAt: Date
+}
+input UpdateParams {
+    id: ID!
+}

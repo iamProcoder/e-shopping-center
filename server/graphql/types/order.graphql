@@ -1,0 +1,24 @@
+scalar Date
+
+type Order {
+    id: ID!
+    address: [String!]!
+    billingAddress: [String!]!
+    user: User!
+    products: [Product!]!
+    createdAt: Date
+}
+
+type Query{ 
+    getOrdersList: [Order!]!
+}
+
+type Mutation {
+    addOrder(data: AddOrderInput): Order
+}
+
+input AddOrderInput {
+    address: String!
+    billingAddress: String!
+    productIds: [ID!]!
+}

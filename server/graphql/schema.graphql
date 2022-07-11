@@ -1,0 +1,11 @@
+# import Query from './types/user.graphql'
+# import Mutation from './types/user.graphql'
+
+# import Query from './types/product.graphql'
+# import Mutation from './types/product.graphql'
+
+# import Query from './types/order.graphql'
+# import Mutation from './types/order.graphql'
+
+
+# import Query from './types/token.graphql'

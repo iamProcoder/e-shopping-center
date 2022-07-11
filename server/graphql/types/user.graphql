@@ -1,0 +1,40 @@
+scalar Date
+
+type User {
+    id: ID!
+    email: String!
+    name: String!
+    surname: String!
+    birthday: Date
+    createdAt: Date
+    orders: [Order!]
+}
+
+type Query {
+    userInfo(id: ID!): User!
+    getOrderListByUser(id: ID!): User
+}
+
+type Mutation {
+    Login(data: LoginUserInput!): Token!
+    Register(data: RegisterUserInput!): Token!
+    Logout(data: LogoutUserInput): String!
+    RefreshToken(data: LogoutUserInput): Token!
+}
+
+input LoginUserInput {
+    email: String!
+    password: String!
+}
+
+input LogoutUserInput {
+    refresh_token: String!
+}
+
+input RegisterUserInput {
+    email: String!
+    password: String!
+    name: String!
+    surname: String!
+    birthday: Date
+}

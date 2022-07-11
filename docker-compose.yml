@@ -1,0 +1,62 @@
+version: '3.8'
+services:
+  e_shopping_db:
+    image: mongo:4.2
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=xxxxx
+      - MONGO_INITDB_ROOT_PASSWORD=xxxxx
+    ports:
+        - "27017:27017"
+    networks:
+      - shopping-network
+
+  redis:
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - '6379:6379'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    networks:
+      - shopping-network
+    volumes: 
+      - redis:/data
+ 
+  server:
+    build: ./server
+    depends_on:
+      - e_shopping_db
+      - redis
+    ports:
+      - 1905:1905
+    networks:
+      - shopping-network
+    environment:      
+      - MONGO_URI=mongodb+srv://xxxxx@cluster0-5pfwg.mongodb.net/e_shopping_center
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    volumes:
+      - ./server:/usr/src/app/shopping
+      - "/usr/src/app/shopping/node_modules"
+    links:
+      - e_shopping_db
+      - redis
+    
+  client:
+    build: ./client
+    ports:
+      - 3000:3000
+    depends_on:
+      - server
+    networks:
+      - shopping-network
+
+volumes:
+  e_shopping_db:
+    driver: MONGO_URI
+  redis:
+    driver: local
+
+networks:
+  shopping-network:
