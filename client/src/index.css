@@ -3,16 +3,12 @@
 @tailwind utilities;
 
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@layer components {
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  .register-input {
+      @apply inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 mt-5 bg-white text-lg font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100
+  }
+  .register-error {
+      @apply inline-flex bg-red-300 text-red-900 w-full font-normal px-2 py-1 rounded
+  }
 }

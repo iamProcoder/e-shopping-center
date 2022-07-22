@@ -1,21 +1,17 @@
 import React, { Fragment } from 'react';
 import { useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client'
-import { GET_PRODUCT } from '../graphql/product.gql'
 
-import { Product } from '../models/ProductModel';
+import {ProductGetById} from '../services/product.service'
+import { IProduct } from '../models/ProductModel';
 
 const ProductDetail = () => {
-  const {id} = useParams<'id'>();
+  const { id } = useParams<'id'>();
 
-  const { data, loading, error } = useQuery(GET_PRODUCT, {variables: { getProductId: id }});
-
+  const { product, loading, error } = ProductGetById(id!);
   if (loading) return <p>"Loading..."</p>;
   if (error) return <p>Error! {error.message}</p>;
 
-  const product = data.getProduct as Product;
-
-  const addToCard = (product: Product) => {
+  const addToCard = (product: IProduct) => {
     console.log('added product >>> ', product);
   };
 

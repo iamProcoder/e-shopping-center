@@ -1,10 +1,10 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Link } from 'react-router-dom'
-import { Product } from '../models/ProductModel';
+import { IProduct } from '../models/ProductModel';
 
-const ProductItem: FC<Product> = (product: Product) => {
+const ProductItem: FC<IProduct> = (product: IProduct) => {
 
-  const addToCard = (product: Product) => {
+  const addToCard = (product: IProduct) => {
     console.log('added product >>> ', product);
   };
 
@@ -28,7 +28,7 @@ const ProductItem: FC<Product> = (product: Product) => {
       <div className="flex justify-between items-center">
         <span className="text-xl font-bold text-gray-900 dark:text-white">
           <>
-            {product.price} $
+            $ {product.price}
           </>
         </span>
         <button
@@ -43,4 +43,3 @@ const ProductItem: FC<Product> = (product: Product) => {
 }
 
 export default ProductItem
-
