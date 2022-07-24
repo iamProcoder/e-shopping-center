@@ -1,10 +1,19 @@
 const Boom = require('@hapi/boom');
 const redis = require("../../../redis/redisConfig");
+const { verifyRefreshToken } = require('../../../helpers/jwt');
 
 const Query = {
     userInfo: async (parent, args, { User, isAuthorization }) => {
-        if (!isAuthorization) return Boom.unauthorized();       
+        if (!isAuthorization) return Boom.unauthorized(); 
+
         const user = await User.findById(args.id);
+        return user; 
+    },
+    userInfoByToken: async (parent, args, { User, isAuthorization }) => {
+        if (!isAuthorization) return Boom.unauthorized();   
+
+        const user_id = await verifyRefreshToken(args.refresh_token);
+        const user = await User.findOne({_id: user_id});
         return user; 
     },
 

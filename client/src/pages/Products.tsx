@@ -1,10 +1,11 @@
-import React, { Fragment, FC, ReactElement } from 'react';
+import { Fragment, FC, ReactElement } from 'react';
 
 import {ProductList} from '../services/product.service'
 import { IProduct } from '../models/ProductModel';
 import ProductItem from '../components/ProductItem';
 
 const Products: FC<{}> = (): ReactElement => { 
+  
   const { products, loading, error } = ProductList();
   if (loading) return <p>"Loading..."</p>;
   if (error) return <p>Error! {error.message}</p>;

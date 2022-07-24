@@ -17,3 +17,22 @@ export const LOGIN = gql`
         }
     }
 `;
+
+export const LOGOUT = gql`
+    mutation Logout($data: LogoutUserInput) {
+        Logout(data: $data)
+    }
+`;
+
+export const USER_INFO_BY_TOKEN = gql`
+    query UserInfoByToken($refreshToken: String!) {
+        userInfoByToken(refresh_token: $refreshToken) {
+            id
+            email
+            name
+            surname
+            birthday
+            createdAt
+        }
+}
+`;

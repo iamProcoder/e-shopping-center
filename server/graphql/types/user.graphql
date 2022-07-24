@@ -12,6 +12,7 @@ type User {
 
 type Query {
     userInfo(id: ID!): User!
+    userInfoByToken(refresh_token: String!): User!
     getOrderListByUser(id: ID!): User
 }
 

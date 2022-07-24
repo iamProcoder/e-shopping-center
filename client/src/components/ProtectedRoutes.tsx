@@ -1,14 +1,24 @@
+import { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
+
+import {  useAppSelector } from '../redux/hooks';
+import { loggedIn } from '../redux/user/authSlice';
 import Auth from "../pages/Auth";
 
-const useAuth = () => {
-  const isLoggedIn = true;
-  return isLoggedIn; 
-}
+const useAuth = (): boolean => {
+  const isLoggedIn = useAppSelector<boolean>(loggedIn);
+  return isLoggedIn;
+};
 
-const ProtectedRoutes = () => {
+const ProtectedRoutes = () => {  
+  const [isAuth, setIsAuth] = useState<boolean>(false);
   let location = useLocation();
-  const isAuth = useAuth();
+
+  let _isAuth: boolean = useAuth();
+  useEffect(() => {
+    setIsAuth(_isAuth);
+  }, [_isAuth]);
+  
   return isAuth ? <Outlet /> : <Auth />;
 }
 
