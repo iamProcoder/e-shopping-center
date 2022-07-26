@@ -11,4 +11,7 @@
   .register-error {
       @apply inline-flex bg-red-300 text-red-900 w-full font-normal px-2 py-1 rounded
   }
+  .userInfoWrapper {
+    @apply py-2 px-3 hover:bg-gray-300 hover:rounded-md
+  }
 }

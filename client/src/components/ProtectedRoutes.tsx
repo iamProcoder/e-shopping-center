@@ -1,13 +1,24 @@
 import { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 
-import {  useAppSelector } from '../redux/hooks';
-import { loggedIn } from '../redux/user/authSlice';
+import {  useAppDispatch, useAppSelector } from '../redux/hooks';
+import { enteranceUser, loggedIn, userInfoByRefToken } from '../redux/user/authSlice';
 import Auth from "../pages/Auth";
+import { IUser } from "../models/UserModel";
+import { UserInfoByToken } from "../services/user.service";
 
 const useAuth = (): boolean => {
+  const dispatch = useAppDispatch();
+  const refreshToken = localStorage.getItem('refreshToken') || '';  
+  const { user, loading } = UserInfoByToken(refreshToken!);
+  
+  useEffect(() => {
+    dispatch(userInfoByRefToken(user));
+  }, [loading, user, dispatch]);
   const isLoggedIn = useAppSelector<boolean>(loggedIn);
-  return isLoggedIn;
+  const isUser = useAppSelector<IUser>(enteranceUser) ? true : false;
+  
+  return isLoggedIn && isUser;
 };
 
 const ProtectedRoutes = () => {  

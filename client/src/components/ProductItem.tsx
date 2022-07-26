@@ -43,4 +43,3 @@ const ProductItem: FC<IProduct> = (product: IProduct) => {
 }
 
 export default ProductItem
-

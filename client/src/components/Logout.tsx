@@ -28,7 +28,7 @@ const LogoutExit = () => {
 
   return (
     <div>
-      <button className='ml-5' onClick={() => logoutHandle()}>Logout</button>
+      <button onClick={() => logoutHandle()}>Logout</button>
     </div>
   )
 }

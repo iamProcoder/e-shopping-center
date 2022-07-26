@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 
@@ -13,6 +13,8 @@ import { loginUser } from '../redux/user/authSlice'
 const SingUp: FC<{}> = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const [alertError, setAllertError] = useState<string>('');
+  
   const {register, loading, error} = Register();
 
   const initialValues: IRegister = {
@@ -33,7 +35,6 @@ const SingUp: FC<{}> = () => {
         delete dataInput['comparePassword'];
 
         if (loading) return <p>"Loading..."</p>;
-        if (error) return <p>Error! {error.message}</p>;
 
         const { data } = await register({ variables: { data: dataInput} });
         const { accessToken, refreshToken }: IToken = data?.Register;
@@ -54,7 +55,17 @@ const SingUp: FC<{}> = () => {
   return (
     <div className="flex items-center justify-center">
       <div className='px-8 py-6 mx-4 mt-4 text-left bg-white shadow-lg md:w-1/3 lg:w-1/3 sm:w-1/3'>
-      <h3 className="text-2xl font-bold text-center mb-3">Join us</h3>
+        {alertError && (
+          <div className="mb-5 space-y-2">
+            <div
+              className="px-4 py-4 text-red-800 bg-red-300 rounded shadow-lg shadow-red-500/50"
+              role="alert"
+            >
+              {alertError}
+            </div>
+          </div>
+        )}
+        <h3 className="text-2xl font-bold text-center mb-3">Join us</h3>
         <div className='min-h-min bg-gray-100 p-10'>
           <form onSubmit={formik.handleSubmit}>
             <input

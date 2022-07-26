@@ -20,13 +20,12 @@ export const authSlice = createSlice({
       state.loggedIn = true;
     },
     logoutUser: (state) => {
-      debugger;
       state.loggedIn = false;
       state.user = null;
     },
     userInfoByRefToken: (state, action: PayloadAction<IUser>) => {
-      debugger;
       state.user = action.payload;
+      state.loggedIn = true;
     }
   }
 });
