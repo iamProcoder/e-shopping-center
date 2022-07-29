@@ -13,9 +13,9 @@ import { loginUser } from '../redux/user/authSlice'
 const SingUp: FC<{}> = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [alertError, setAllertError] = useState<string>('');
+  const [alertError, setAlertError] = useState<string>('');
   
-  const {register, loading, error} = Register();
+  const { register, loading } = Register();
 
   const initialValues: IRegister = {
     email: "",
@@ -48,6 +48,7 @@ const SingUp: FC<{}> = () => {
       } catch (e: any) {
         bag.setErrors(e);
         console.log('Register submit :>> ', e.message);
+        setAlertError(e.message);
       }
     }
   });
