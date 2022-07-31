@@ -5,12 +5,14 @@ import { IUser } from '../models/UserModel';
 import { useAppSelector } from '../redux/hooks';
 import { loggedIn, enteranceUser } from '../redux/user/authSlice';
 import { totalCartCount } from '../redux/order/orderSlice';
-import Logout from './Logout';
 
 import { FaUser } from 'react-icons/fa';
 import { ImProfile } from 'react-icons/im';
 import { IoLogOutOutline } from 'react-icons/io5';
 import { GiShoppingCart } from 'react-icons/gi';
+
+import Logout from './Logout';
+import AddRemoveAlert from '../components/AddRemoveAlert';
 
 const Navbar = () => {
   const [isAppear, setIsAppear]= useState<boolean>(false);
@@ -29,7 +31,9 @@ const Navbar = () => {
           </div>
         </Link>
       </div>
-
+      <div>
+        <AddRemoveAlert />
+      </div>
       <div className="flex relative">
         {isLoggedIn && (
           <>

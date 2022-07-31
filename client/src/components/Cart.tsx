@@ -13,10 +13,10 @@ const Cart = () => {
   });
 
   return (
-    <div className="container p-8 mx-auto mt-12">
+    <div className="container p-8 mx-auto mt-5">
       <div className="w-full overflow-x-auto">
-        <div className="my-2">
-          <h3 className="text-xl font-bold tracking-wider">Shopping Cart</h3>
+        <div className="my-2 shadow-md">
+          <h3 className="text-xl font-bold tracking-wider pb-3">Shopping Cart</h3>
         </div>
         {totalCartPrice === 0 && (
           <span className="px-4 text-red-800 bg-red-300 rounded shadow-lg shadow-red-500/50">
@@ -30,15 +30,9 @@ const Cart = () => {
           <thead>
             <tr className="bg-gray-100">
               <th className="px-6 py-3 font-bold whitespace-nowrap">Photo</th>
-              <th className="px-6 py-3 font-bold whitespace-nowrap">
-                Product Name
-              </th>
-              <th className="px-6 py-3 font-bold whitespace-nowrap">
-                Quantity
-              </th>
-              <th className="px-6 py-3 font-bold whitespace-nowrap">
-                Unit Price
-              </th>
+              <th className="px-6 py-3 font-bold whitespace-nowrap">Product Name</th>
+              <th className="px-6 py-3 font-bold whitespace-nowrap">Quantity</th>
+              <th className="px-6 py-3 font-bold whitespace-nowrap">Unit Price</th>
               <th className="px-6 py-3 font-bold whitespace-nowrap">Price</th>
               <th className="px-6 py-3 font-bold whitespace-nowrap">Remove</th>
             </tr>

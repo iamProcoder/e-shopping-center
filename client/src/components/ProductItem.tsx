@@ -1,16 +1,14 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { useAppDispatch } from '../redux/hooks';
 import { IProduct } from '../models/ProductModel';
 import { AddCart } from '../helpers/DispatchToCart';
-import { addCartAlert } from '../redux/order/orderSlice';
 
 const ProductItem: FC<IProduct> = (product: IProduct) => {
   const dispatch = useAppDispatch();
   const addToCart = (product: IProduct) => AddCart(dispatch, product);
 
   return (
-
     <div className="max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 p-2">
       <Link to={`/product-detail/${product.id}`}>
         <img datatype='text/html'

@@ -12,6 +12,8 @@ const NoFoundPage = () => {
     bg-gradient-to-r
     from-indigo-600
     to-blue-400
+    -ml-5
+    -mr-5
   "
 >
   <div className="px-40 py-20 bg-white rounded-md shadow-xl">

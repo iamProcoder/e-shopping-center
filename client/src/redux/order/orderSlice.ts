@@ -27,7 +27,7 @@ export const orderSlice = createSlice({
         state.carts.push(cart);
       } else {
         let checkAddProduct: boolean = false;
-        state.carts.map(( {product}, index ) => {
+        state.carts.forEach(( {product}, index ) => {
           if (product.id === action.payload.id) {
               state.carts[index].quantity++;
               checkAddProduct=true;
@@ -63,11 +63,14 @@ export const orderSlice = createSlice({
         state.carts[action.payload].quantity--;
       }
     },
-
+    clearAlert: (state) => {
+      state.addCartAlert = false;
+      state.removeCartAlert = false;
+    }
   }
 });
 
-export const { addCart, removeCart, increaseQuantity, decreaseQuantity } = orderSlice.actions;
+export const { addCart, removeCart, increaseQuantity, decreaseQuantity, clearAlert } = orderSlice.actions;
 
 export const addCartAlert = (state: RootState) => state.order.addCartAlert;
 export const removeCartAlert = (state: RootState) => state.order.removeCartAlert;
